@@ -16,13 +16,13 @@ void limpabuffer() {
 int main()
 {
     int opcao, numero=0, numero1=-2;
-    char nome[MAX_SIZE], nome1[MAX_SIZE];
+    char nome[MAX_SIZE], nome1[MAX_SIZE], ficload[MAX_SIZE]="mem.txt";
     FILE *ficp = NULL, *ficp1;
 
 
     do {
         clear();
-        printf("# Memoria #\n1. Consultar pelo numero\n2. Consultar pelo nome\n3. Inserir valores\n4. Imprimir tudo\n5. Sair\n\nopcao: ");
+        printf("# Memoria #\n1. Consultar pelo numero\n2. Consultar pelo nome\n3. Imprimir tudo\n4. Inserir valores\n5. Carregar outro ficheiro\n6. Sair\n\nopcao: ");
         scanf("%d",&opcao);
 
         /* opcao consultar pelo numero*/
@@ -30,7 +30,7 @@ int main()
             clear();
             printf("numero: ");
             scanf("%d", &numero1);
-            ficp = fopen("mem.txt","r");
+            ficp = fopen(ficload,"r");
             while (fscanf(ficp,"%d %s",&numero, nome) != EOF && numero != numero1)
                 ;
             fclose(ficp);
@@ -39,12 +39,13 @@ int main()
             getchar();
             getchar();
         }
+        /* opcao consultar pelo nome*/
         if(opcao==2) {
             clear();
             printf("nome: ");
             limpabuffer();
             scanf("%s", nome1);
-            ficp = fopen("mem.txt","r");
+            ficp = fopen(ficload,"r");
             while (fscanf(ficp,"%d %s",&numero, nome) != EOF && strcmp(nome,nome1))
                 ;
             fclose(ficp);
@@ -54,27 +55,33 @@ int main()
             getchar();
         }
         /* opcao inserir valores*/
-        if(opcao==3) {
+        if(opcao==4) {
             clear();
             printf("numero: ");
             scanf("%d", &numero);
             printf("nome: ");
             scanf("%s", nome);
-            ficp = fopen("mem.txt","a");
+            ficp = fopen(ficload,"a");
             fprintf(ficp, "%d %s\n", numero, nome);
             fclose(ficp);
         }
         /* opcao imprimir tudo*/
-        if(opcao == 4) {
+        if(opcao == 3) {
             clear();
-            ficp1 = fopen("mem.txt","r");
+            ficp1 = fopen(ficload,"r");
             while (fscanf(ficp1, "%d %s", &numero, nome) != EOF)
                 printf("%d %s\n", numero, nome);
             fclose(ficp1);
             getchar();
             getchar();
         }
-    } while (opcao != 5);
+        if(opcao == 5) {
+            clear();
+            printf("Ficheiro: ");
+            limpabuffer();
+            scanf("%s", ficload);
+        }
+    } while (opcao != 6);
 
     return 0;
 }
