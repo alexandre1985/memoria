@@ -60,9 +60,11 @@ int main()
             scanf("%d", &numero);
             printf("nome: ");
             limpabuffer();
-            scanf("%s", nome);
-            //for(opcao=0;opcao!=(strlen(nome1)); opcao++)
-            //    nome[opcao]=tolower(nome1[opcao]);
+            scanf("%s", nome1);
+            /* por em minusculas*/
+            for(opcao=0;opcao!=(strlen(nome1)); opcao++)
+                nome[opcao]=tolower(nome1[opcao]);
+            nome[opcao]='\0';
             ficp = fopen(ficload,"a");
             fprintf(ficp, "%d %s\n", numero, nome);
             fclose(ficp);
