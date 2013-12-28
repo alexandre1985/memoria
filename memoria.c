@@ -19,7 +19,6 @@ int main()
     char nome[MAX_SIZE], nome1[MAX_SIZE], ficload[MAX_SIZE]="mem.txt";
     FILE *ficp = NULL, *ficp1;
 
-
     do {
         clear();
         printf("# Memoria #\n1. Consultar pelo numero\n2. Consultar pelo nome\n3. Imprimir tudo\n4. Inserir valores\n5. Carregar outro ficheiro\n6. Sair\n\nopcao: ");
@@ -60,7 +59,10 @@ int main()
             printf("numero: ");
             scanf("%d", &numero);
             printf("nome: ");
+            limpabuffer();
             scanf("%s", nome);
+            //for(opcao=0;opcao!=(strlen(nome1)); opcao++)
+            //    nome[opcao]=tolower(nome1[opcao]);
             ficp = fopen(ficload,"a");
             fprintf(ficp, "%d %s\n", numero, nome);
             fclose(ficp);
@@ -75,6 +77,7 @@ int main()
             getchar();
             getchar();
         }
+        /* opcao Carregar outro Ficheiro*/
         if(opcao == 5) {
             clear();
             printf("Ficheiro: ");
