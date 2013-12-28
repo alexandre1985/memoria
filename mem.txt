@@ -15,7 +15,8 @@
 15 fosforo
 16 enxofre
 17 cloro
-18 argonio
+18 argon
 19 potassio
 20 calcio
 21 escandio
+22 titanio
